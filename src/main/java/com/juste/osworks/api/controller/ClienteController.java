@@ -15,19 +15,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juste.osworks.domain.model.Cliente;
 import com.juste.osworks.domain.repository.ClienteRepository;
+import com.juste.osworks.domain.service.CadastroClienteService;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 	
+	/**
+	 * Regra de negócio passar no service
+	 * 
+	 * consultas pode fazer direto no repositório 
+	 */
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private CadastroClienteService cadastroCliente;
 	
 	@GetMapping
 	public List<Cliente> listar() {
@@ -49,7 +58,7 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+		return cadastroCliente.salvar(cliente);
 	}
 	
 	@PutMapping("/{clienteId}") // tem que ver o id do cliente e o cliente
@@ -60,7 +69,7 @@ public class ClienteController {
 		}
 		
 		cliente.setId(clienteId);
-		cliente = clienteRepository.save(cliente);
+		cliente = cadastroCliente.salvar(cliente);
 		
 		return ResponseEntity.ok(cliente);
 	}
@@ -72,7 +81,7 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clienteRepository.deleteById(clienteId);
+		cadastroCliente.excluir(clienteId);
 	
 		return ResponseEntity.noContent().build();
 	}
