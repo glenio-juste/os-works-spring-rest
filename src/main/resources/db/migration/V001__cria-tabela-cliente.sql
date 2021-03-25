@@ -1,8 +1,8 @@
 create table cliente (
-	id bigint not null auto_increment,
-	nome varchar(60) not null,
-	email varchar(255) not null, 
-	telefone varchar(20) not null,
+	id bigserial not null,
+	nome character varying(60) not null,
+	email character varying(255) not null, 
+	telefone character varying(20) not null,
 	
 	primary key (id)
 );
