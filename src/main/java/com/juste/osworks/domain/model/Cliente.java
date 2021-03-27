@@ -12,6 +12,9 @@ import javax.validation.constraints.Size;
 
 import com.juste.osworks.domain.ValidationGroups;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@EnableSwagger2
 @Entity
 public class Cliente {
 	
