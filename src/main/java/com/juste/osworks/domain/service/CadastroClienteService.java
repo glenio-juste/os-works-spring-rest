@@ -14,7 +14,7 @@ public class CadastroClienteService {
 	private ClienteRepository clienteRepository;
 
 	public Cliente salvar(Cliente cliente) {
-		// pegando o email do cliente
+		
 		Cliente clienteExistente = clienteRepository.findByEmail(cliente.getEmail());
 		
 		if(clienteExistente != null && !clienteExistente.equals(cliente)) {
