@@ -39,7 +39,7 @@ public class OrdemServico {
 	@NotNull
 	private BigDecimal preco;
 	
-	@JsonProperty(access = Access.READ_ONLY) // ignora caso o uuário passar esse dado no Postman (é para gravar automático)
+	@JsonProperty(access = Access.READ_ONLY) // ignora caso o usuário passar esse dado no Postman (é para gravar automático)
 	@Enumerated(EnumType.STRING)
 	private StatusOrdemServico status;
 	
