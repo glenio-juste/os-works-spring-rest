@@ -25,13 +25,7 @@ import com.juste.osworks.domain.service.CadastroClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-	
-	/**
-	 * Regra de negócio passar no service
-	 * 
-	 * consultas pode fazer direto no repositório 
-	 */
-	
+		
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -61,7 +55,7 @@ public class ClienteController {
 		return cadastroCliente.salvar(cliente);
 	}
 	
-	@PutMapping("/{clienteId}") // tem que ver o id do cliente e o cliente
+	@PutMapping("/{clienteId}") 
 	public ResponseEntity<Cliente> atualizar(@Valid @PathVariable Long clienteId, @RequestBody Cliente cliente) {
 		
 		if(!clienteRepository.existsById(clienteId)) {
